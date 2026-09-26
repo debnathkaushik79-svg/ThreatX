@@ -500,5 +500,161 @@ Place the trained model files inside:
 ```text
 models/
 ├── targeted_feature_engineered_rf.pkl
-└── hierarchical_attack_classifier.p
+└── hierarchical_attack_classifier.pkl
 ```
+
+The model files are intentionally excluded from Git tracking because of their size.
+
+## 6. Start the Backend
+
+From the project root:
+
+```powershell
+uvicorn backend.main:app --reload
+```
+
+The API will run at:
+
+```text
+http://127.0.0.1:8000
+```
+
+Health check:
+
+```text
+http://127.0.0.1:8000/api/health
+```
+
+## 7. Start the Frontend
+
+Serve the `frontend` directory using a local development server such as VS Code Live Server.
+
+Example:
+
+```text
+http://127.0.0.1:5501
+```
+
+Open the dashboard and select **Start Monitoring** to begin the traffic simulation.
+
+---
+
+# Engineering Highlights
+
+ThreatX brings together multiple areas of software engineering and machine learning:
+
+* End-to-end ML inference pipeline
+* Hierarchical classification architecture
+* Reusable feature-engineering module
+* FastAPI REST API development
+* PostgreSQL database integration
+* SQLAlchemy ORM
+* Backend-driven dashboard statistics
+* Automated traffic simulation
+* Security alert generation
+* Severity-based threat analysis
+* Prediction confidence tracking
+* Modular frontend JavaScript
+* Environment-variable-based configuration
+* Git-based version control
+* Structured project architecture
+
+---
+
+# Future Enhancements
+
+The current architecture provides a foundation for extending ThreatX with additional cybersecurity and machine-learning capabilities.
+
+## Machine Learning
+
+* Advanced ensemble models
+* XGBoost-based experiments
+* Hyperparameter optimization
+* Cross-validation
+* Model comparison and benchmarking
+* Improved minority-class detection
+* Advanced feature selection
+* Explainable AI using SHAP
+
+## Network Monitoring
+
+* Live packet capture
+* Network-interface integration
+* Streaming traffic ingestion
+* WebSocket-based real-time updates
+* Protocol-level traffic analysis
+* Continuous network monitoring
+
+## Security Analytics
+
+* Advanced historical analytics
+* Threat filtering and search
+* Attack trend analysis
+* Custom time-range reports
+* Security-event correlation
+* Automated security reports
+
+## Platform Development
+
+* JWT authentication
+* Role-based access control
+* User-specific dashboards
+* Alert acknowledgement workflows
+* Audit logging
+* Model version management
+
+## Infrastructure
+
+* Docker containerization
+* Background task processing
+* Scalable ML inference services
+* Production-oriented database configuration
+* Cloud deployment using infrastructure appropriate for ML workloads
+
+These enhancements provide a roadmap for evolving ThreatX from a machine-learning cybersecurity project into a more comprehensive security monitoring platform.
+
+---
+
+# Project Objective
+
+ThreatX was developed to demonstrate how **machine learning and software engineering can be combined to create an end-to-end cybersecurity monitoring workflow**.
+
+The project integrates:
+
+```text
+Network Dataset
+      ↓
+Data Preparation
+      ↓
+Feature Engineering
+      ↓
+Machine Learning
+      ↓
+Threat Detection
+      ↓
+Attack Classification
+      ↓
+Severity Analysis
+      ↓
+Database Storage
+      ↓
+REST API
+      ↓
+Security Dashboard
+```
+
+Through this project, ThreatX demonstrates the integration of **machine-learning models, backend services, databases, APIs, traffic simulation, security analytics, and frontend visualization** into a unified application.
+
+---
+
+# Author
+
+**Kaushik Debnath**
+
+B.Tech Computer Science & Engineering
+
+---
+
+# License
+
+This project is developed for educational, academic, portfolio, and research purposes.
