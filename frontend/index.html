@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        ThreatX | Security Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
+
+    <header class="header">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                TX
+            </div>
+
+            <div>
+
+                <h1>
+                    ThreatX
+                </h1>
+
+                <p>
+                    Cybersecurity Threat Detection
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            API Online
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             PAGE HEADING
+             ================================================= -->
+
+        <section class="page-heading">
+
+            <div>
+
+                <h2>
+                    Security Dashboard
+                </h2>
+
+                <p>
+                    Real-time network threat monitoring
+                    powered by machine learning.
+                </p>
+
+            </div>
+
+
+            <button id="refreshButton">
+
+                Refresh
+
+            </button>
+
+        </section>
+
+
+
+        <!-- =================================================
+             LIVE MONITORING
+             ================================================= -->
+
+        <section class="live-monitoring-card">
+
+            <div class="live-monitoring-content">
+
+
+                <!-- ================= STATUS ================= -->
+
+                <div class="live-monitoring-info">
+
+                    <div class="live-status-row">
+
+                        <span
+                            id="liveStatusDot"
+                            class="live-status-dot offline">
+                        </span>
+
+
+                        <span
+                            id="liveStatusText"
+                            class="live-status-text">
+
+                            Monitoring Stopped
+
+                        </span>
+
+                    </div>
+
+
+                    <h2>
+                        Live Threat Monitoring
+                    </h2>
+
+
+                    <p id="liveStatusDescription">
+
+                        Start the traffic stream to monitor
+                        network activity in real time.
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- ================= CONTROLS ================= -->
+
+                <div class="live-monitoring-controls">
+
+                    <button
+                        id="startSimulationButton"
+                        class="simulation-button start-button">
+
+                        ▶ Start Monitoring
+
+                    </button>
+
+
+                    <button
+                        id="stopSimulationButton"
+                        class="simulation-button stop-button"
+                        disabled>
+
+                        ■ Stop Monitoring
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MAIN STATISTICS
+             ================================================= -->
+
+        <section class="stats-grid">
+
+
+            <!-- TOTAL TRAFFIC -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Total Traffic
+                </div>
+
+
+                <div
+                    class="stat-value"
+                    id="totalTraffic">
+
+                    —
+
+                </div>
+
+
+                <div class="stat-description">
+                    Network records analyzed
+                </div>
+
+            </div>
+
+
+
+            <!-- THREATS -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Threats Detected
+                </div>
+
+
+                <div
+                    class="stat-value threat"
+                    id="attackTraffic">
+
+                    —
+
+                </div>
+
+
+                <div class="stat-description">
+                    Classified as attacks
+                </div>
+
+            </div>
+
+
+
+            <!-- NORMAL -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Normal Traffic
+                </div>
+
+
+                <div
+                    class="stat-value normal"
+                    id="normalTraffic">
+
+                    —
+
+                </div>
+
+
+                <div class="stat-description">
+                    Classified as normal
+                </div>
+
+            </div>
+
+
+
+            <!-- CRITICAL -->
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Critical Alerts
+                </div>
+
+
+                <div
+                    class="stat-value critical"
+                    id="criticalAlerts">
+
+                    —
+
+                </div>
+
+
+                <div class="stat-description">
+                    Active security alerts
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANALYTICS OVERVIEW
+             ================================================= -->
+
+        <section class="analytics-overview">
+
+
+            <!-- NORMAL PERCENTAGE -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-card-header">
+
+                    <span>
+                        Normal Traffic
+                    </span>
+
+                </div>
+
+
+                <div class="analytics-value">
+
+                    <span id="normalPercentage">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="analytics-progress">
+
+                    <div
+                        id="normalProgress"
+                        class="analytics-progress-fill normal-progress"
+                        style="width: 0%;">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ATTACK PERCENTAGE -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-card-header">
+
+                    <span>
+                        Attack Traffic
+                    </span>
+
+                </div>
+
+
+                <div class="analytics-value">
+
+                    <span id="attackPercentage">
+                        0%
+                    </span>
+
+                </div>
+
+
+                <div class="analytics-progress">
+
+                    <div
+                        id="attackProgress"
+                        class="analytics-progress-fill attack-progress"
+                        style="width: 0%;">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TOTAL ALERTS -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-card-header">
+
+                    <span>
+                        Total Alerts
+                    </span>
+
+                </div>
+
+
+                <div class="analytics-value">
+
+                    <span id="totalAlerts">
+                        0
+                    </span>
+
+                </div>
+
+
+                <p class="analytics-description">
+
+                    Security events detected
+
+                </p>
+
+            </div>
+
+
+
+            <!-- HIGH + CRITICAL -->
+
+            <div class="analytics-card">
+
+                <div class="analytics-card-header">
+
+                    <span>
+                        High + Critical
+                    </span>
+
+                </div>
+
+
+                <div class="analytics-value">
+
+                    <span id="highCriticalAlerts">
+                        0
+                    </span>
+
+                </div>
+
+
+                <p class="analytics-description">
+
+                    High priority threats
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             TRAFFIC ACTIVITY
+             ================================================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Traffic Activity
+                    </h2>
+
+                    <p>
+                        Recent network activity over time
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-chart-card">
+
+                <div class="time-series-chart">
+
+                    <div class="chart-y-axis">
+
+                        <span id="chartMaxValue">
+                            0
+                        </span>
+
+                        <span>
+                            0
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="trafficTimelineChart"
+                        class="traffic-timeline-chart">
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-legend">
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot normal-dot">
+                        </span>
+
+                        Normal Traffic
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot attack-dot">
+                        </span>
+
+                        Attacks
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot alert-dot">
+                        </span>
+
+                        Alerts
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             THREAT ACTIVITY
+             ================================================= -->
+
+        <section class="dashboard-section">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Threat Activity
+                    </h2>
+
+                    <p>
+                        Attack categories detected over time
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="analytics-chart-card">
+
+                <div
+                    id="threatActivityTimeline"
+                    class="threat-activity-timeline">
+
+                </div>
+
+
+                <div class="threat-activity-legend">
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot generic-dot">
+                        </span>
+
+                        Generic
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot exploits-dot">
+                        </span>
+
+                        Exploits
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot dos-dot">
+                        </span>
+
+                        DoS
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot fuzzers-dot">
+                        </span>
+
+                        Fuzzers
+
+                    </div>
+
+
+                    <div class="legend-item">
+
+                        <span
+                            class="legend-dot other-dot">
+                        </span>
+
+                        Other
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CONTENT GRID
+             ================================================= -->
+
+        <section class="content-grid">
+
+
+            <!-- =================================================
+                 ATTACK DISTRIBUTION
+                 ================================================= -->
+
+            <section class="dashboard-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Attack Distribution
+                        </h2>
+
+                        <p>
+                            Detected attack categories
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="chart-card">
+
+                    <div
+                        id="attackDistributionChart"
+                        class="attack-distribution">
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 ALERT SUMMARY
+                 ================================================= -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <h3>
+                            Alert Summary
+                        </h3>
+
+                        <p>
+                            Security alert severity
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="alert-summary">
+
+
+                    <!-- CRITICAL -->
+
+                    <div class="alert-row">
+
+                        <span>
+                            Critical
+                        </span>
+
+                        <strong id="criticalCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <!-- HIGH -->
+
+                    <div class="alert-row">
+
+                        <span>
+                            High
+                        </span>
+
+                        <strong id="highCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <!-- MEDIUM -->
+
+                    <div class="alert-row">
+
+                        <span>
+                            Medium
+                        </span>
+
+                        <strong id="mediumCount">
+                            0
+                        </strong>
+
+                    </div>
+
+
+                    <!-- LOW -->
+
+                    <div class="alert-row">
+
+                        <span>
+                            Low
+                        </span>
+
+                        <strong id="lowCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECENT ALERTS
+             ================================================= -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Recent Alerts
+                    </h3>
+
+                    <p>
+                        Latest detected security events
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Time
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+
+                            <th>
+                                Severity
+                            </th>
+
+                            <th>
+                                Description
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="alertsTable">
+
+                        <tr>
+
+                            <td
+                                colspan="5"
+                                class="loading">
+
+                                Loading alerts...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECENT TRAFFIC
+             ================================================= -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h3>
+                        Recent Traffic
+                    </h3>
+
+                    <p>
+                        Latest ML predictions
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                ID
+                            </th>
+
+                            <th>
+                                Time
+                            </th>
+
+                            <th>
+                                Prediction
+                            </th>
+
+                            <th>
+                                Attack Category
+                            </th>
+
+                            <th>
+                                Protocol
+                            </th>
+
+                            <th>
+                                Service
+                            </th>
+
+                            <th>
+                                Confidence
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="trafficTable">
+
+                        <tr>
+
+                            <td
+                                colspan="7"
+                                class="loading">
+
+                                Loading traffic...
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
+
+    <footer>
+
+        <p>
+            ThreatX — ML-Based Cybersecurity Monitoring
+        </p>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>

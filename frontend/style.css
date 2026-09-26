@@ -1,0 +1,1327 @@
+/* =========================================================
+   ThreatX — Dashboard Styles
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+    min-height: 100vh;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+    height: 72px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e9f0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 32px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #172033;
+    color: white;
+
+    border-radius: 10px;
+
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.brand h1 {
+    font-size: 20px;
+}
+
+.brand p {
+    color: #7b8494;
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+
+/* ================= API STATUS ================= */
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 13px;
+    color: #465267;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+
+    background: #20a464;
+    border-radius: 50%;
+}
+
+
+/* ================= MAIN ================= */
+
+.container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 32px;
+}
+
+
+/* ================= PAGE HEADING ================= */
+
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 28px;
+}
+
+.page-heading h2 {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.page-heading p {
+    color: #707b8e;
+    font-size: 14px;
+}
+
+.page-heading button {
+    border: none;
+
+    background: #172033;
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+}
+
+.page-heading button:hover {
+    opacity: 0.9;
+}
+
+
+/* ================= STATISTICS ================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+}
+
+.stat-card {
+    background: white;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 12px;
+
+    padding: 22px;
+}
+
+.stat-label {
+    color: #6d7789;
+    font-size: 13px;
+
+    margin-bottom: 12px;
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+.stat-description {
+    color: #8b94a4;
+    font-size: 12px;
+}
+
+.stat-value.threat {
+    color: #d64b4b;
+}
+
+.stat-value.normal {
+    color: #20885a;
+}
+
+.stat-value.critical {
+    color: #b73535;
+}
+
+
+/* ================= CONTENT ================= */
+
+.content-grid {
+    display: grid;
+
+    grid-template-columns:
+        2fr 1fr;
+
+    gap: 18px;
+
+    margin-bottom: 24px;
+}
+
+.card {
+    background: white;
+
+    border: 1px solid #e5e9f0;
+
+    border-radius: 12px;
+
+    padding: 22px;
+
+    margin-bottom: 24px;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.card-header h3 {
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.card-header p {
+    font-size: 12px;
+    color: #8a93a3;
+}
+
+
+/* ================= DISTRIBUTION ================= */
+
+.distribution {
+    min-height: 120px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+.distribution-row {
+    display: grid;
+
+    grid-template-columns:
+        120px 1fr 40px;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 13px;
+}
+
+.distribution-bar {
+    height: 9px;
+
+    background: #e8edf4;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.distribution-fill {
+    height: 100%;
+
+    background: #d64b4b;
+
+    border-radius: 10px;
+}
+
+
+/* ================= ALERT SUMMARY ================= */
+
+.alert-summary {
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.alert-row {
+    display: flex;
+    justify-content: space-between;
+
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid #edf0f4;
+
+    font-size: 14px;
+}
+
+.alert-row strong {
+    font-size: 15px;
+}
+
+
+/* ================= TABLE ================= */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+}
+
+thead {
+    background: #f7f9fc;
+}
+
+th {
+    text-align: left;
+
+    padding: 13px;
+
+    color: #697487;
+
+    font-weight: 600;
+
+    border-bottom: 1px solid #e5e9f0;
+}
+
+td {
+    padding: 14px 13px;
+
+    border-bottom: 1px solid #edf0f4;
+
+    color: #374256;
+}
+
+.loading {
+    text-align: center;
+
+    color: #8a93a3;
+
+    padding: 28px;
+}
+
+
+/* ================= BADGES ================= */
+
+.badge {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+.badge-normal {
+    background: #e7f6ee;
+    color: #197449;
+}
+
+.badge-attack {
+    background: #fdeaea;
+    color: #b63838;
+}
+
+.badge-critical {
+    background: #fde5e5;
+    color: #a62929;
+}
+
+.badge-high {
+    background: #fff0df;
+    color: #a86112;
+}
+
+.badge-medium {
+    background: #fff8dc;
+    color: #8a7010;
+}
+
+.badge-low {
+    background: #e8f0ff;
+    color: #3c5f9e;
+}
+
+
+/* ================= FOOTER ================= */
+
+footer {
+    text-align: center;
+
+    padding: 24px;
+
+    color: #8a93a3;
+
+    font-size: 12px;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1000px) {
+
+    .stats-grid {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .header {
+        padding: 0 16px;
+    }
+
+    .container {
+        padding: 20px 16px;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 15px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   ATTACK DISTRIBUTION
+   ========================================================= */
+
+.chart-card {
+
+    width: 100%;
+
+    min-height: 300px;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #e5e7eb;
+
+}
+
+
+.attack-distribution {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+}
+
+
+.attack-bar-item {
+
+    width: 100%;
+
+}
+
+
+.attack-bar-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 8px;
+
+}
+
+
+.attack-category {
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+
+.attack-bar-header strong {
+
+    font-size: 14px;
+
+}
+
+
+.attack-bar-track {
+
+    width: 100%;
+
+    height: 12px;
+
+    background: #e5e7eb;
+
+    border-radius: 999px;
+
+    overflow: hidden;
+
+}
+
+
+.attack-bar-fill {
+
+    height: 100%;
+
+    background: #ef4444;
+
+    border-radius: 999px;
+
+    transition: width 0.5s ease;
+
+}
+
+
+.empty-state {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    min-height: 200px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+}
+
+/* =========================================================
+   THREATX — LIVE MONITORING
+   ========================================================= */
+
+.live-monitoring-card {
+
+    width: 100%;
+
+    margin-bottom: 24px;
+
+    padding: 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 16px;
+
+    box-sizing: border-box;
+
+}
+
+
+.live-monitoring-content {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 24px;
+
+}
+
+
+.live-monitoring-info {
+
+    flex: 1;
+
+}
+
+
+.live-status-row {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.live-status-dot {
+
+    width: 10px;
+
+    height: 10px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+
+}
+
+
+.live-status-dot.online {
+
+    background: #22c55e;
+
+    box-shadow:
+        0 0 0 4px rgba(34, 197, 94, 0.15);
+
+    animation: livePulse 1.5s infinite;
+
+}
+
+
+.live-status-dot.offline {
+
+    background: #9ca3af;
+
+}
+
+
+.live-status-text {
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+.live-monitoring-info h2 {
+
+    margin: 0 0 6px 0;
+
+    font-size: 20px;
+
+}
+
+
+.live-monitoring-info p {
+
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 14px;
+
+}
+
+
+.live-monitoring-controls {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.simulation-button {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 11px 18px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+
+}
+
+
+.simulation-button:hover:not(:disabled) {
+
+    transform: translateY(-1px);
+
+}
+
+
+.simulation-button:disabled {
+
+    opacity: 0.45;
+
+    cursor: not-allowed;
+
+}
+
+
+.start-button {
+
+    background: #16a34a;
+
+    color: #ffffff;
+
+}
+
+
+.stop-button {
+
+    background: #dc2626;
+
+    color: #ffffff;
+
+}
+
+
+@keyframes livePulse {
+
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.25);
+        opacity: 0.65;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .live-monitoring-content {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    .live-monitoring-controls {
+
+        width: 100%;
+    }
+
+    .simulation-button {
+
+        flex: 1;
+    }
+
+}
+
+/* =========================================================
+   ANALYTICS OVERVIEW
+   ========================================================= */
+
+.analytics-overview {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.analytics-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.analytics-card-header {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 12px;
+}
+
+.analytics-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 14px;
+}
+
+.analytics-description {
+    margin: 0;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.analytics-progress {
+    width: 100%;
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.analytics-progress-fill {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.5s ease;
+}
+
+.normal-progress {
+    background: #22c55e;
+}
+
+.attack-progress {
+    background: #ef4444;
+}
+
+
+@media (max-width: 1000px) {
+
+    .analytics-overview {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .analytics-overview {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =========================================================
+   TIME-SERIES ANALYTICS
+   ========================================================= */
+
+.analytics-chart-card {
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 16px;
+
+    padding: 24px;
+
+    box-sizing: border-box;
+
+}
+
+
+.time-series-chart {
+
+    width: 100%;
+
+    min-height: 300px;
+
+    display: flex;
+
+    gap: 14px;
+
+}
+
+
+.chart-y-axis {
+
+    width: 35px;
+
+    min-width: 35px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    padding-bottom: 28px;
+
+    color: #6b7280;
+
+    font-size: 11px;
+
+    text-align: right;
+
+}
+
+
+.traffic-timeline-chart {
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 280px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 8px;
+
+    border-bottom: 1px solid #d1d5db;
+
+    padding: 0 4px;
+
+    box-sizing: border-box;
+
+    overflow-x: auto;
+
+}
+
+
+.timeline-column {
+
+    min-width: 32px;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    position: relative;
+
+}
+
+
+.timeline-bars {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: center;
+
+    gap: 3px;
+
+}
+
+
+.timeline-bar {
+
+    width: 9px;
+
+    min-height: 2px;
+
+    border-radius: 4px 4px 0 0;
+
+    transition: height 0.4s ease;
+
+}
+
+
+.timeline-normal {
+
+    background: #22c55e;
+
+}
+
+
+.timeline-attack {
+
+    background: #ef4444;
+
+}
+
+
+.timeline-alert {
+
+    background: #f59e0b;
+
+}
+
+
+.timeline-time {
+
+    position: absolute;
+
+    bottom: -24px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 10px;
+
+    color: #6b7280;
+
+    white-space: nowrap;
+
+}
+
+
+.chart-legend {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 24px;
+
+    margin-top: 35px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    font-size: 13px;
+
+    color: #6b7280;
+
+}
+
+
+.legend-dot {
+
+    width: 9px;
+
+    height: 9px;
+
+    border-radius: 50%;
+
+}
+
+
+.normal-dot {
+
+    background: #22c55e;
+
+}
+
+
+.attack-dot {
+
+    background: #ef4444;
+
+}
+
+
+.alert-dot {
+
+    background: #f59e0b;
+
+}
+
+
+@media (max-width: 768px) {
+
+    .analytics-chart-card {
+
+        padding: 16px;
+
+    }
+
+
+    .traffic-timeline-chart {
+
+        gap: 5px;
+
+    }
+
+
+    .timeline-column {
+
+        min-width: 26px;
+
+    }
+
+
+    .timeline-bar {
+
+        width: 7px;
+
+    }
+
+}
+
+
+/* =========================================================
+   THREAT ACTIVITY TIMELINE
+   ========================================================= */
+
+.threat-activity-timeline {
+
+    width: 100%;
+
+    min-height: 280px;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 10px;
+
+    overflow-x: auto;
+
+    padding: 20px 4px 30px;
+
+    box-sizing: border-box;
+
+    border-bottom: 1px solid #d1d5db;
+
+}
+
+
+.threat-time-column {
+
+    min-width: 42px;
+
+    height: 230px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    position: relative;
+
+}
+
+
+.threat-stack {
+
+    width: 30px;
+
+    display: flex;
+
+    flex-direction: column-reverse;
+
+    border-radius: 5px 5px 0 0;
+
+    overflow: hidden;
+
+}
+
+
+.threat-segment {
+
+    width: 100%;
+
+    min-height: 2px;
+
+    transition: height 0.4s ease;
+
+}
+
+
+.threat-generic {
+
+    background: #8b5cf6;
+
+}
+
+
+.threat-exploits {
+
+    background: #ef4444;
+
+}
+
+
+.threat-dos {
+
+    background: #f97316;
+
+}
+
+
+.threat-fuzzers {
+
+    background: #eab308;
+
+}
+
+
+.threat-other {
+
+    background: #64748b;
+
+}
+
+
+.threat-time-label {
+
+    position: absolute;
+
+    bottom: -25px;
+
+    font-size: 10px;
+
+    color: #6b7280;
+
+    white-space: nowrap;
+
+}
+
+
+.threat-activity-legend {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+    margin-top: 30px;
+
+}
+
+
+.generic-dot {
+
+    background: #8b5cf6;
+
+}
+
+
+.exploits-dot {
+
+    background: #ef4444;
+
+}
+
+
+.dos-dot {
+
+    background: #f97316;
+
+}
+
+
+.fuzzers-dot {
+
+    background: #eab308;
+
+}
+
+
+.other-dot {
+
+    background: #64748b;
+
+}
+
+
+@media (max-width: 768px) {
+
+    .threat-activity-timeline {
+
+        gap: 6px;
+
+    }
+
+
+    .threat-time-column {
+
+        min-width: 34px;
+
+    }
+
+
+    .threat-stack {
+
+        width: 24px;
+
+    }
+
+}
