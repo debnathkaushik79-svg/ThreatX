@@ -4,33 +4,33 @@
 
 ThreatX is an end-to-end machine-learning-based cybersecurity monitoring system that analyzes network traffic, detects potential threats, classifies attack categories, assigns security severity, and visualizes security events through an interactive dashboard.
 
-The system combines **machine learning, feature engineering, REST APIs, database persistence, traffic simulation, and a web-based monitoring dashboard** into a single cybersecurity workflow.
+The system combines **machine learning, feature engineering, REST APIs, database persistence, traffic simulation, and web-based monitoring** into a unified cybersecurity workflow.
 
 ---
 
 ## Overview
 
-ThreatX processes network traffic through a two-stage machine learning pipeline:
+ThreatX processes network traffic through a two-stage machine learning architecture:
 
 1. **Stage 1 — Threat Detection**
 
-   * Determines whether network traffic is **Normal** or an **Attack**.
+   * Determines whether network traffic is Normal or an Attack.
 
 2. **Stage 2 — Attack Classification**
 
-   * If an attack is detected, the system classifies it into a specific attack category.
+   * Classifies detected attacks into specific attack categories.
 
 3. **Security Analysis**
 
-   * Assigns a severity level based on the detected attack category.
+   * Maps detected attack categories to appropriate severity levels.
 
-4. **Monitoring & Storage**
+4. **Data Persistence**
 
-   * Stores traffic and security events in PostgreSQL.
+   * Stores traffic predictions and security alerts in PostgreSQL.
 
-5. **Visualization**
+5. **Dashboard Monitoring**
 
-   * Displays network activity, threats, alerts, attack distribution, and recent predictions through the ThreatX dashboard.
+   * Presents traffic activity, threats, alerts, attack distribution, and recent predictions through the ThreatX dashboard.
 
 ---
 
@@ -52,7 +52,7 @@ flowchart TD
 
     G --> H[Severity Analysis]
 
-    E --> I[(PostgreSQL)]
+    E --> I[(PostgreSQL Database)]
     H --> I
 
     I --> J[ThreatX Dashboard]
@@ -62,6 +62,9 @@ flowchart TD
     J --> M[Attack Distribution]
     J --> N[Security Alerts]
     J --> O[Recent Traffic]
+
+    P[Traffic Simulator] --> A
+    J --> P
 ```
 
 ---
@@ -75,34 +78,35 @@ flowchart LR
     C --> D[Train / Validation Split]
 
     D --> E[Stage 1 Model]
-    E --> F[Normal / Attack]
+    E --> F{Normal or Attack}
 
-    F -->|Attack| G[Stage 2 Model]
-    G --> H[Attack Category]
+    F -->|Normal| G[Normal Traffic]
+    F -->|Attack| H[Stage 2 Model]
 
-    F -->|Normal| I[Normal Traffic]
+    H --> I[Attack Category]
+    I --> J[Severity Assignment]
 
-    H --> J[Severity Assignment]
-    I --> K[Traffic Log]
+    G --> K[Traffic Log]
     J --> K
 
     K --> L[PostgreSQL]
-    L --> M[Dashboard]
+    L --> M[ThreatX Dashboard]
 ```
 
 ---
 
-## Key Features
+# Key Features
 
-### 🔍 Machine Learning Threat Detection
+## 🔍 ML-Based Threat Detection
 
 * Binary classification of network traffic
 * Normal vs Attack detection
 * Attack category classification
 * Prediction confidence
-* Feature engineering for network-flow behavior
+* Network-flow feature engineering
+* Hierarchical machine-learning architecture
 
-### 🛡️ Security Monitoring
+## 🛡️ Security Monitoring
 
 * Real-time traffic simulation
 * Continuous ML prediction
@@ -110,13 +114,17 @@ flowchart LR
 * Attack category identification
 * Severity-based security alerts
 * Recent traffic monitoring
+* Security event tracking
 
-### 📊 Security Dashboard
+## 📊 Security Dashboard
+
+The ThreatX dashboard provides:
 
 * Total traffic statistics
 * Detected threat statistics
-* Normal vs attack distribution
+* Normal traffic statistics
 * Critical alert count
+* Normal vs attack distribution
 * Traffic activity timeline
 * Threat activity timeline
 * Attack category distribution
@@ -124,9 +132,9 @@ flowchart LR
 * Recent security alerts
 * Recent ML predictions
 
-### 🗄️ Data Persistence
+## 🗄️ Database Integration
 
-ThreatX stores important monitoring information in PostgreSQL, including:
+ThreatX uses PostgreSQL to persist monitoring information including:
 
 * Traffic predictions
 * Attack categories
@@ -141,9 +149,9 @@ ThreatX stores important monitoring information in PostgreSQL, including:
 
 ---
 
-## Attack Categories
+# Attack Categories
 
-The attack-classification pipeline supports categories represented in the UNSW-NB15 dataset, including:
+The attack-classification pipeline supports attack categories represented in the UNSW-NB15 dataset:
 
 * Generic
 * Exploits
@@ -157,24 +165,24 @@ The attack-classification pipeline supports categories represented in the UNSW-N
 
 ---
 
-## Threat Severity Classification
+# Threat Severity Classification
 
-ThreatX converts detected attack categories into security severity levels.
+ThreatX maps detected attack categories to security severity levels.
 
-| Severity | Categories                 |
+| Severity | Attack Categories          |
 | -------- | -------------------------- |
 | Critical | DoS, Backdoor, Shellcode   |
 | High     | Exploits, Fuzzers, Generic |
 | Medium   | Reconnaissance, Analysis   |
 | Low      | Other categories           |
 
-This provides an additional security-analysis layer between machine-learning predictions and dashboard alerts.
+This provides an additional security-analysis layer between ML predictions and dashboard alerts.
 
 ---
 
-## Feature Engineering
+# Feature Engineering
 
-ThreatX creates additional behavioral features from the original network-flow attributes.
+ThreatX creates additional network-behavior features from the original network-flow attributes.
 
 Examples include:
 
@@ -197,15 +205,15 @@ Examples include:
 * TCP window difference
 * Total handshake time
 
-The feature-engineering process is shared between model development and backend inference to maintain consistency between training and prediction.
+The feature-engineering module is shared between model development and backend inference to maintain consistency between training and prediction.
 
 ---
 
-## Model Performance
+# Model Performance
 
-### Stage 1 — Binary Threat Detection
+## Stage 1 — Binary Threat Detection
 
-Validation results:
+### Validation Performance
 
 | Metric    |  Score |
 | --------- | -----: |
@@ -214,7 +222,7 @@ Validation results:
 | Recall    | 97.07% |
 | F1 Score  | 97.63% |
 
-Evaluation on the UNSW-NB15 test split:
+### UNSW-NB15 Test Split
 
 | Metric    |  Score |
 | --------- | -----: |
@@ -223,9 +231,9 @@ Evaluation on the UNSW-NB15 test split:
 | Recall    | 87.87% |
 | F1 Score  | 92.97% |
 
-### Stage 2 — Attack Classification
+## Stage 2 — Attack Classification
 
-Validation results:
+### Validation Performance
 
 | Metric             |  Score |
 | ------------------ | -----: |
@@ -234,13 +242,11 @@ Validation results:
 | Weighted Recall    | 80.48% |
 | Weighted F1 Score  | 79.70% |
 
-These metrics document the performance of the current experimental models and provide a baseline for further model improvement.
+These results provide a documented baseline for the current ML pipeline and support further experimentation with feature engineering, model selection, and class-level optimization.
 
 ---
 
-## Prediction Workflow
-
-A prediction request follows this flow:
+# Prediction Workflow
 
 ```mermaid
 sequenceDiagram
@@ -255,12 +261,12 @@ sequenceDiagram
     A->>F: Prepare features
     F-->>A: Engineered features
 
-    A->>M1: Normal / Attack prediction
+    A->>M1: Predict Normal / Attack
     M1-->>A: Prediction + confidence
 
-    alt Normal
+    alt Normal Traffic
         A->>DB: Store traffic log
-    else Attack
+    else Attack Detected
         A->>M2: Classify attack
         M2-->>A: Category + confidence
         A->>A: Assign severity
@@ -278,13 +284,13 @@ sequenceDiagram
 
 ![ThreatX Dashboard](screenshots/dashboard-overview.png)
 
-The main dashboard provides a centralized view of network traffic, detected threats, normal traffic, active alerts, and monitoring status.
+The main dashboard provides a centralized view of network activity, detected threats, normal traffic, active alerts, and monitoring status.
 
 ## Live Monitoring
 
 ![ThreatX Live Monitoring](screenshots/monitoring_live.png)
 
-The live monitoring interface allows the traffic simulation to continuously send network records through the ML pipeline.
+The live monitoring interface continuously processes simulated network records through the ML pipeline.
 
 ## Traffic Activity
 
@@ -296,25 +302,25 @@ The traffic activity section provides a timeline-based view of recent network ac
 
 ![Threat Activity](screenshots/threat_activity.png)
 
-Threat activity visualizes detected attack categories across the monitoring timeline.
+The threat activity section visualizes detected attack categories across the monitoring timeline.
 
 ## Security Alerts
 
 ![Security Alerts](screenshots/security_alerts.png)
 
-The security-alert section organizes detected threats according to their assigned severity.
+Security alerts are organized according to their assigned severity.
 
 ## Recent Alerts
 
 ![Recent Alerts](screenshots/recent_alerts.png)
 
-Recent security events are displayed with attack type, severity, confidence, protocol, service, and network state.
+The recent alerts section displays the latest detected security events.
 
 ## Recent Traffic
 
 ![Recent Traffic](screenshots/recent_traffic.png)
 
-The recent traffic section displays the latest machine-learning predictions and their associated network information.
+The recent traffic section displays the latest ML predictions along with network information and prediction confidence.
 
 ---
 
@@ -428,17 +434,17 @@ ThreatX/
 └── README.md
 ```
 
-> The trained model files are excluded from Git source tracking because of their size and are distributed separately through GitHub Releases.
+> The trained model files are excluded from Git tracking because of their size. The models are required locally to run the ML backend.
 
 ---
 
 # Dataset
 
-ThreatX uses the **UNSW-NB15** dataset for machine-learning development and traffic simulation.
+ThreatX uses the **UNSW-NB15** network intrusion dataset for machine-learning development and traffic simulation.
 
 The dataset contains network-flow attributes representing normal network behavior and multiple categories of malicious traffic.
 
-The dataset is intentionally excluded from Git tracking because of its size.
+Dataset files are excluded from Git tracking because of their size.
 
 Expected local files:
 
@@ -465,7 +471,7 @@ cd ThreatX
 python -m venv venv
 ```
 
-Activate the environment:
+Activate it:
 
 ```powershell
 .\venv\Scripts\Activate.ps1
@@ -487,191 +493,12 @@ DATABASE_URL=your_postgresql_connection_string
 
 Keep database credentials private and never commit `.env` to GitHub.
 
-## 5. Download the ML Models
+## 5. Add the Trained Models
 
-Download the required trained models from the project's GitHub Releases and place them inside:
-
-```text
-models/
-```
-
-Required files:
+Place the trained model files inside:
 
 ```text
 models/
 ├── targeted_feature_engineered_rf.pkl
-└── hierarchical_attack_classifier.pkl
+└── hierarchical_attack_classifier.p
 ```
-
-## 6. Start the Backend
-
-From the project root:
-
-```powershell
-uvicorn backend.main:app --reload
-```
-
-The API will run at:
-
-```text
-http://127.0.0.1:8000
-```
-
-Health check:
-
-```text
-http://127.0.0.1:8000/api/health
-```
-
-## 7. Start the Frontend
-
-Serve the `frontend` directory using a local development server such as VS Code Live Server.
-
-Example:
-
-```text
-http://127.0.0.1:5501
-```
-
-Open the dashboard and select **Start Monitoring** to begin the traffic simulation.
-
----
-
-# Model Management
-
-Large trained models are maintained separately from the source-code repository.
-
-Current model release:
-
-**v1.0-models**
-
-Required model files:
-
-```text
-targeted_feature_engineered_rf.pkl
-hierarchical_attack_classifier.pkl
-```
-
-This approach keeps the Git repository focused on source code, configuration, documentation and project assets while allowing the trained models to be versioned independently.
-
----
-
-# Engineering Highlights
-
-ThreatX demonstrates several software-engineering and machine-learning concepts in one project:
-
-* End-to-end ML inference pipeline
-* Hierarchical classification architecture
-* Reusable feature-engineering module
-* FastAPI REST API design
-* PostgreSQL database integration
-* SQLAlchemy ORM
-* Backend-driven dashboard statistics
-* Automated traffic simulation
-* Security alert generation
-* Severity-based threat analysis
-* Prediction confidence tracking
-* Modular frontend JavaScript
-* Environment-variable-based configuration
-* Git-based version control
-* Separate versioning of large ML artifacts
-
----
-
-# Future Enhancements
-
-The current architecture provides a foundation for extending ThreatX into a more advanced network-security platform.
-
-Planned enhancement areas include:
-
-### 🔬 Machine Learning
-
-* Advanced ensemble models
-* XGBoost-based experiments
-* Improved handling of minority attack classes
-* Hyperparameter optimization
-* Cross-validation experiments
-* Model comparison and benchmarking
-* Explainable AI using SHAP
-
-### 🌐 Network Monitoring
-
-* Live network packet capture
-* Network-interface integration
-* Streaming traffic ingestion
-* WebSocket-based real-time updates
-* Extended protocol-level analysis
-
-### 📊 Security Analytics
-
-* Advanced historical analytics
-* Threat filtering and search
-* Attack trend analysis
-* Custom time-range reports
-* Security event correlation
-* Automated security reports
-
-### 🔐 Platform Features
-
-* JWT-based authentication
-* Role-based access control
-* User-specific dashboards
-* Alert acknowledgement and management
-* Model version management
-* Audit logging
-
-### ⚙️ Infrastructure
-
-* Docker containerization
-* Production-oriented database configuration
-* Scalable inference architecture
-* Background task processing
-* Cloud deployment on infrastructure sized for ML workloads
-
-These enhancements provide a clear path from the current academic/portfolio implementation toward a more scalable cybersecurity monitoring platform.
-
----
-
-# Project Objective
-
-ThreatX was developed to explore how **machine learning and software engineering can be combined to build a practical cybersecurity monitoring workflow**.
-
-The project brings together:
-
-```text
-Network Dataset
-      ↓
-Data Preparation
-      ↓
-Feature Engineering
-      ↓
-Machine Learning
-      ↓
-Threat Detection
-      ↓
-Attack Classification
-      ↓
-Severity Analysis
-      ↓
-Database
-      ↓
-REST API
-      ↓
-Security Dashboard
-```
-
-The project demonstrates the integration of **ML models, backend services, databases, APIs, simulation, and frontend visualization** into a complete application.
-
----
-
-# Author
-
-**Kaushik Debnath**
-
-B.Tech Computer Science & Engineering
-
----
-
-# License
-
-This project is developed for educational, academic, portfolio, and research purposes.
